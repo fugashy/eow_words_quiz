@@ -5,3 +5,5 @@ authors = ["fugashy <fugashy@icloud.com>"]
 edition = "2018"
 
 [dependencies]
+rand = "0.3.14"
+csv = "1.1"
