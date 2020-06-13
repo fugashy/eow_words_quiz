@@ -1,6 +1,6 @@
 [package]
 name = "eow_words_quiz"
-version = "0.1.1"
+version = "0.1.2"
 description = "A quizzer of what words or statements mean by using an EOW tsv file(https://eow.alc.co.jp/)"
 authors = ["fugashy <fugashy@icloud.com>"]
 edition = "2018"
