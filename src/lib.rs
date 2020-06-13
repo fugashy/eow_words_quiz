@@ -7,6 +7,17 @@ use std::io;
 use csv_random_picker::CsvRandomPicker;
 use translate_shell_client::TranslateShellClient;
 
+/// Execute question repeatedly.
+///
+/// # Examples
+///
+/// ```
+/// use std::env;
+/// fn main() {
+///     // expected args is ["program_name", "/tmp/input_file_name.tsv"]
+///     eow_word_quiz::run(env::args());
+/// }
+/// ```
 pub fn run(mut args: env::Args) {
     // 最初はファイル名なので流す
     args.next();
