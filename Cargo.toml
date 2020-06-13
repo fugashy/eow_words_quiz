@@ -3,6 +3,7 @@ name = "eow_words_quiz"
 version = "0.1.0"
 authors = ["fugashy <fugashy@icloud.com>"]
 edition = "2018"
+license = "BSD-3-Clause"
 
 [dependencies]
 csv = "1.1"
