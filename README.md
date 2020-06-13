@@ -19,8 +19,11 @@ Ask you that what the word means from EOW word list
 
   https://eow.alc.co.jp
 
-  Save the list as /tmp/words.tsv, for example.
+- Save the list as /tmp/words.tsv, for example.
 
-```bash
-cargo run /tmp/words.tsv
-```
+- Run
+
+  ```bash
+  cargo install eow_words_quiz
+  eow_words_quiz /tmp/words.tsv
+  ```

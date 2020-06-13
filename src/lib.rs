@@ -1,28 +1,3 @@
-//! # eow_words_quiz
-//! Ask you that what the word means from EOW word list
-//!
-//! # External dependencies
-//!
-//! - translate-shell
-//!
-//!   ```bash
-//!   $ brew install translate-shell
-//!   ```
-//!
-//! # How to use
-//!
-//! - Download your word list from EOW
-//!
-//!   https://eow.alc.co.jp
-//!
-//! - Save list as /tmp/words.tsv
-//!
-//! - Run
-//!
-//!   ```bash
-//!   cargo install eow_words_quiz
-//!   eow_words_quiz /tmp/words.tsv
-//!   ```
 mod csv_random_picker;
 mod translate_shell_client;
 
