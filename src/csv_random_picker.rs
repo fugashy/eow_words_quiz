@@ -20,36 +20,30 @@ impl Row {
     }
 }
 
-pub struct CsvRandomPicker<'a> {
-    // private
-    rows: usize,
-    file_path: &'a str,
+pub struct CsvRandomPicker {
+    rows: Vec<Row>,
 }
 
-impl CsvRandomPicker<'_> {
-    pub fn new<'a>(file_path: &'a str) -> Result<CsvRandomPicker, Box<dyn Error>> {
-        let rows = csv::ReaderBuilder::new()
+impl CsvRandomPicker {
+    pub fn new(file_path: &str) -> Result<CsvRandomPicker, Box<dyn Error>> {
+        let mut reader = csv::ReaderBuilder::new()
             .has_headers(false)
             .comment(Some(b'#'))
             .delimiter(b'\t')
-            .from_path(file_path)?
-            .records()
-            .count();
-        println!("Initialized with: '{}' that have {} lines", file_path, rows);
-        Ok(CsvRandomPicker { rows, file_path })
+            .from_path(file_path)?;
+        let mut rows: Vec<Row> = Vec::new();
+        for record in reader.records() {
+            rows.push(Row::new(record?)?);
+        }
+        Ok(CsvRandomPicker { rows })
     }
 
     // ランダムで行をとってくる
-    pub fn random_pickup(&mut self) -> Result<Row, Box<dyn Error>> {
-        let pickup_id = rand::thread_rng().gen_range(0, self.rows);
-        let mut reader = csv::ReaderBuilder::new()
-            .has_headers(true)
-            .comment(Some(b'#'))
-            .delimiter(b'\t')
-            .from_path(self.file_path)?;
-        for record in reader.records().enumerate() {
-            if record.0 == pickup_id {
-                return Row::new(record.1?);
+    pub fn random_pickup(&mut self) -> Result<&Row, Box<dyn Error>> {
+        let pickup_id = rand::thread_rng().gen_range(0, self.rows.len());
+        for row in self.rows.iter().enumerate() {
+            if row.0 == pickup_id {
+                return Ok(row.1);
             }
         }
         Err(From::from("Failed to pick up word"))
