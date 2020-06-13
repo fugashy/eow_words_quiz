@@ -39,7 +39,7 @@ impl CsvRandomPicker {
     }
 
     // ランダムで行をとってくる
-    pub fn random_pickup(&mut self) -> Result<&Row, Box<dyn Error>> {
+    pub fn random_pickup(&self) -> Result<&Row, Box<dyn Error>> {
         let pickup_id = rand::thread_rng().gen_range(0, self.rows.len());
         for row in self.rows.iter().enumerate() {
             if row.0 == pickup_id {
