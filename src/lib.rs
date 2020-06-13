@@ -1,13 +1,15 @@
 mod csv_random_picker;
 mod translate_shell_client;
 
+use std::env;
 use std::io;
 
 use csv_random_picker::CsvRandomPicker;
 use translate_shell_client::TranslateShellClient;
 
-pub fn run() {
-    let file_path = String::from("/tmp/words.tsv");
+pub fn run(mut args: env::Args) {
+    args.next();
+    let file_path = String::from(args.next().unwrap());
     let picker = CsvRandomPicker::new(&file_path).unwrap();
 
     let some_row = picker.random_pickup().unwrap();
